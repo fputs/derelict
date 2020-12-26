@@ -1,0 +1,3 @@
+[submodule "lib/libfputs"]
+	path = lib/libfputs
+	url = https://git.sr.ht/~fputs/libfputs
