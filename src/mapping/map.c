@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "mapping/map.h"
 #include "mapping/generators.h"
@@ -9,6 +10,7 @@ struct Map *init_Map(int w, int h, enum MapType type) {
     m->width = w;
     m->height = h;
     m->tiles = malloc(sizeof(enum Tile) * w * h);
+    memset(m->tiles, TILE_NONE, sizeof(enum Tile) * m->width * m->height);
 
     switch (type) {
         case MAPTYPE_TEST:
