@@ -2,9 +2,7 @@
 #define SCREEN_MANAGER_H
 
 #include "screens/screen.h"
-#include "stack.h"
-
-struct Stack *screen_manager;
+#include "lfstack.h"
 
 void init_screen_manager();
 void push_screen(struct Screen *s);

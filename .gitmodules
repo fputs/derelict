@@ -1,3 +1,6 @@
 [submodule "lib/libfputs"]
 	path = lib/libfputs
 	url = https://git.sr.ht/~fputs/libfputs
+[submodule "lib/libflint"]
+	path = lib/libflint
+	url = gitea@git.fputs.com:fputs/libflint

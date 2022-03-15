@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include "screens/dungeon.h"
+#include "screens/gamescreen.h"
 #include "screens/manager.h"
 #include "screens/utility.h"
 #include "BearLibTerminal.h"
@@ -45,7 +45,7 @@ void dungeon_update(struct GameState *gs) {
 
 }
 
-struct Screen *new_dungeon_screen() {
+struct Screen *new_gamescreen() {
     struct Screen *s = malloc(sizeof(struct Screen));
     s->input = dungeon_input;
     s->render = dungeon_render;

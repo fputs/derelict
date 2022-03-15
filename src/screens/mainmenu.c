@@ -2,7 +2,7 @@
 
 #include "screens/mainmenu.h"
 #include "screens/manager.h"
-#include "screens/dungeon.h"
+#include "screens/gamescreen.h"
 #include "BearLibTerminal.h"
 
 void main_menu_input(struct GameState *gs) {
@@ -13,7 +13,7 @@ void main_menu_input(struct GameState *gs) {
             break;
 
         case TK_ENTER:
-            push_screen(new_dungeon_screen());
+            push_screen(new_gamescreen());
             break;
     }
 }

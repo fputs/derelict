@@ -3,7 +3,7 @@ project(derelict C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_subdirectory(lib/libfputs)
+add_subdirectory(lib/libflint)
 
 FILE(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
 
@@ -13,7 +13,7 @@ set(SRC
 
     src/screens/manager.c
     src/screens/mainmenu.c
-    src/screens/dungeon.c
+    src/screens/gamescreen.c
     src/screens/utility.c
 
     src/mapping/map.c
@@ -25,7 +25,7 @@ add_executable(derelict ${SRC})
 
 target_include_directories(derelict PRIVATE
     include
-    lib/libfputs/include
+    lib/libflint/include
 )
 
 target_link_directories(derelict PRIVATE
@@ -34,5 +34,5 @@ target_link_directories(derelict PRIVATE
 
 target_link_libraries(derelict PRIVATE
     BearLibTerminal
-    libfputs
+    flint
 )

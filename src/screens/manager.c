@@ -2,10 +2,10 @@
 
 #include "screens/manager.h"
 
-struct Stack *screen_manager;
+Stack *screen_manager;
 
 void init_screen_manager() {
-    screen_manager = malloc(sizeof(struct Stack));
+    screen_manager = malloc(sizeof(Stack));
     stack_init(screen_manager, free);
 }
 

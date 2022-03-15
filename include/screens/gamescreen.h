@@ -3,6 +3,6 @@
 
 #include "screens/screen.h"
 
-struct Screen *new_dungeon_screen();
+struct Screen *new_gamescreen();
 
 #endif
