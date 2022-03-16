@@ -1,6 +1,7 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "flecs.h"
 #include "mapping/map.h"
 
 struct GameState {
@@ -8,6 +9,7 @@ struct GameState {
     int window_height;
 
     struct Map *current_map;
+    ecs_world_t *ecs;
 
     int quit_flag;
 };

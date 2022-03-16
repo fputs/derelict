@@ -4,6 +4,7 @@ project(derelict C)
 set(CMAKE_C_STANDARD 11)
 
 add_subdirectory(lib/libflint)
+add_subdirectory(lib/flecs)
 
 FILE(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
 
@@ -11,14 +12,15 @@ set(SRC
     src/main.c
     src/gamestate.c
 
+    src/ecs/components.c
+
+    src/mapping/map.c
+    src/mapping/generators/test.c
+
     src/screens/manager.c
     src/screens/mainmenu.c
     src/screens/gamescreen.c
     src/screens/utility.c
-
-    src/mapping/map.c
-
-    src/mapping/generators/test.c
 )
 
 add_executable(derelict ${SRC})
@@ -26,6 +28,7 @@ add_executable(derelict ${SRC})
 target_include_directories(derelict PRIVATE
     include
     lib/libflint/include
+    lib/flecs/include
 )
 
 target_link_directories(derelict PRIVATE
@@ -35,4 +38,5 @@ target_link_directories(derelict PRIVATE
 target_link_libraries(derelict PRIVATE
     BearLibTerminal
     flint
+    flecs
 )
