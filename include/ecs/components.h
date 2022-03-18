@@ -2,10 +2,15 @@
 #define ECS_COMPONENTS_H
 
 #include "BearLibTerminal.h"
+#include "flecs.h"
 
 typedef struct {
     int x, y;
 } Position;
+
+typedef struct {
+    int dx, dy;
+} Movement;
 
 typedef struct {
     char symbol;
@@ -14,9 +19,8 @@ typedef struct {
 } Drawable;
 
 typedef struct {
-    int actions;
     int hp;
     int speed;
-} Character;
+} Actor;
 
 #endif // ECS_COMPONENTS_H

@@ -16,6 +16,8 @@ struct Map {
     int width;
     int height;
     enum Tile *tiles;
+    int player_start_x;
+    int player_start_y;
 };
 
 struct Map *init_Map(int w, int h, enum MapType type);
