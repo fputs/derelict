@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
 #include "ecs/components.h"
+#include "ecs/systems.h"
 #include "screens/gamescreen.h"
 #include "screens/manager.h"
 #include "screens/utility.h"
@@ -13,10 +14,10 @@
 #define MESSAGE_LOG_HEIGHT 20
 #define MESSAGE_LOG_Y_START gs->window_height - (MESSAGE_LOG_HEIGHT) + 1
 
-ECS_COMPONENT_DECLARE(Position);
-ECS_COMPONENT_DECLARE(Movement);
-ECS_COMPONENT_DECLARE(Drawable);
-ECS_COMPONENT_DECLARE(Actor);
+extern ECS_COMPONENT_DECLARE(Position);
+extern ECS_COMPONENT_DECLARE(Movement);
+extern ECS_COMPONENT_DECLARE(Drawable);
+extern ECS_COMPONENT_DECLARE(Actor);
 
 void gamescreen_handle_input(struct GameState *gs) {
     switch (terminal_read()) {
@@ -84,7 +85,7 @@ void gamescreen_render(struct GameState *gs) {
         Position *p = ecs_term(&it, Position, 1);
         Drawable *d = ecs_term(&it, Drawable, 3);
         for (int i = 0; i < it.count; i ++) {
-            // Fix this +1 garbage
+            // TODO: Fix this +1 garbage
             terminal_printf(p[i].x + 1, p[i].y + 1, "%c", d[i].symbol);
         }
     }
@@ -101,23 +102,7 @@ void gamescreen_render(struct GameState *gs) {
 }
 
 void gamescreen_update(struct GameState *gs) {
-    ecs_filter_t f;
-    ecs_filter_init(gs->ecs, &f, &(ecs_filter_desc_t) {
-            .terms = {
-                    { ecs_id(Position) },
-                    { ecs_id(Movement) },
-                    { ecs_id(Actor) },
-            }
-    });
-    ecs_iter_t it = ecs_filter_iter(gs->ecs, &f);
-    while (ecs_filter_next(&it)) {
-        Position *p = ecs_term(&it, Position, 1);
-        Movement *m = ecs_term(&it, Movement, 2);
-        for (int i = 0; i < it.count; i ++) {
-            p[i].x += m[i].dx;
-            p[i].y += m[i].dy;
-        }
-    }
+    ecs_progress(gs->ecs, 0);
 }
 
 struct Screen *new_gamescreen() {

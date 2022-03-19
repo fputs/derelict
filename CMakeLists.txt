@@ -13,6 +13,7 @@ set(SRC
     src/gamestate.c
 
     src/ecs/components.c
+    src/ecs/systems.c
 
     src/mapping/map.c
     src/mapping/generators/test.c

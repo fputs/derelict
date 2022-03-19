@@ -2,12 +2,13 @@
 
 #include "gamestate.h"
 #include "ecs/components.h"
+#include "ecs/systems.h"
 
 // ECS Declarations
-extern ECS_COMPONENT_DECLARE(Position);
-extern ECS_COMPONENT_DECLARE(Movement);
-extern ECS_COMPONENT_DECLARE(Drawable);
-extern ECS_COMPONENT_DECLARE(Actor);
+ECS_COMPONENT_DECLARE(Position);
+ECS_COMPONENT_DECLARE(Movement);
+ECS_COMPONENT_DECLARE(Drawable);
+ECS_COMPONENT_DECLARE(Actor);
 
 struct GameState *new_GameState(int w, int h) {
     struct GameState *gs = malloc(sizeof(struct GameState));
@@ -23,10 +24,13 @@ struct GameState *new_GameState(int w, int h) {
     ECS_COMPONENT_DEFINE(gs->ecs, Actor);
     ECS_COMPONENT_DEFINE(gs->ecs, Movement);
 
+    ECS_SYSTEM(gs->ecs, move_system, EcsOnUpdate, Position, Movement)
+    ECS_SYSTEM(gs->ecs, remove_movement_system, EcsPostUpdate, Movement);
+
     /* START TEMP */
     // Temp player settings
     ecs_set(gs->ecs, gs->player, Actor, {10, 5});
-    ecs_set(gs->ecs, gs->player, Drawable, {'@', color_from_name("black"), color_from_name("white")});
+    ecs_set(gs->ecs, gs->player, Drawable, {'@', 0, color_from_name("yellow")});
 
     // Temp map
     gs->current_map = init_Map(w * 2, h * 2, MAPTYPE_TEST);
