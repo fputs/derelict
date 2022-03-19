@@ -27,6 +27,7 @@ int main() {
 
     // END GAME
     destroy_screen_manager();
+    destroy_GameState(gs);
     terminal_close();
     return 0;
 }

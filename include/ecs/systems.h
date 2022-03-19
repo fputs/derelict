@@ -5,5 +5,6 @@
 
 void move_system(ecs_iter_t *);
 void remove_movement_system(ecs_iter_t *);
+void verify_player_movement_system(ecs_iter_t *);
 
 #endif // ECS_SYSTEMS_H

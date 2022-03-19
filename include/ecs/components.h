@@ -23,4 +23,8 @@ typedef struct {
     int speed;
 } Actor;
 
+typedef struct {
+    int lives;
+} Hero;
+
 #endif // ECS_COMPONENTS_H

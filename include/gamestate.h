@@ -11,7 +11,9 @@ struct GameState {
     struct Map *current_map;
     ecs_world_t *ecs;
     ecs_entity_t player;
+
     int quit_flag;
+    int turn_flag;
 };
 
 struct GameState *new_GameState(int w, int h);
