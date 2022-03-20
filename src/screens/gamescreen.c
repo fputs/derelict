@@ -7,6 +7,7 @@
 #include "screens/utility.h"
 #include "BearLibTerminal.h"
 #include "layers.h"
+#include "colors.h"
 
 #define STAT_PANEL_WIDTH 20
 #define STAT_PANEL_X_START gs->window_width - (STAT_PANEL_WIDTH) + 1
@@ -18,6 +19,7 @@ extern ECS_COMPONENT_DECLARE(Position);
 extern ECS_COMPONENT_DECLARE(Movement);
 extern ECS_COMPONENT_DECLARE(Drawable);
 extern ECS_COMPONENT_DECLARE(Actor);
+extern ECS_DECLARE(QueuedMovement);
 
 void gamescreen_handle_input(struct GameState *gs) {
     switch (terminal_read()) {
@@ -32,6 +34,7 @@ void gamescreen_handle_input(struct GameState *gs) {
     case TK_H:
     case TK_LEFT:
         ecs_set(gs->ecs, gs->player, Movement, {-1, 0});
+        ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_L:

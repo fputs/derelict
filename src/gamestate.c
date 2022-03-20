@@ -10,6 +10,8 @@ ECS_COMPONENT_DECLARE(Movement);
 ECS_COMPONENT_DECLARE(Drawable);
 ECS_COMPONENT_DECLARE(Actor);
 ECS_COMPONENT_DECLARE(Hero);
+ECS_DECLARE(QueuedMovement);
+ECS_DECLARE(NoQueuedMovement);
 
 struct GameState *new_GameState(int w, int h) {
     struct GameState *gs = malloc(sizeof(struct GameState));
@@ -35,6 +37,11 @@ struct GameState *new_GameState(int w, int h) {
     ECS_COMPONENT_DEFINE(gs->ecs, Movement)
     ECS_COMPONENT_DEFINE(gs->ecs, Hero)
 
+    // Tag definitions
+    ECS_TAG_DEFINE(gs->ecs, QueuedMovement)
+    ECS_TAG_DEFINE(gs->ecs, NoQueuedMovement)
+    ECS_TYPE(gs->ecs, MovementState, QueuedMovement, NoQueuedMovement)
+
     // System definitions
     ecs_system_init(gs->ecs, &(ecs_system_desc_t) {
             .query.filter.terms = {
@@ -55,7 +62,6 @@ struct GameState *new_GameState(int w, int h) {
             .callback = move_system,
             .ctx = gs,
     });
-    ECS_SYSTEM(gs->ecs, remove_movement_system, PostUpdate, Movement)
 
     /* START TEMP */
     // Temp player settings
@@ -63,6 +69,8 @@ struct GameState *new_GameState(int w, int h) {
     ecs_set(gs->ecs, gs->player, Actor, {10, 5});
     ecs_set(gs->ecs, gs->player, Drawable, {'@', 0, color_from_name("yellow")});
     ecs_set(gs->ecs, gs->player, Hero, {1});
+    ecs_add_id(gs->ecs, gs->player, ECS_SWITCH | MovementState);
+    ecs_add_id(gs->ecs, gs->player, ECS_CASE | NoQueuedMovement);
 
     // Temp map
     gs->current_map = init_Map(w * 2, h * 2, MAPTYPE_TEST);

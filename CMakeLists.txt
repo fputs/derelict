@@ -11,6 +11,7 @@ FILE(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
 set(SRC
     src/main.c
     src/gamestate.c
+    src/colors.c
 
     src/ecs/components.c
     src/ecs/systems.c
@@ -30,6 +31,7 @@ target_include_directories(derelict PRIVATE
     include
     lib/libflint/include
     lib/flecs/include
+    lib/uthash/include
 )
 
 target_link_directories(derelict PRIVATE

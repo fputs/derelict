@@ -2,7 +2,7 @@
 #include "ecs/components.h"
 #include "gamestate.h"
 
-extern ECS_COMPONENT_DECLARE(Movement);
+extern ECS_DECLARE(NoQueuedMovement);
 
 void move_system(ecs_iter_t *it) {
     struct GameState *gs = (struct GameState*)it->ctx;
@@ -15,14 +15,12 @@ void move_system(ecs_iter_t *it) {
     for (int i = 0; i < it->count; i++) {
         p[i].x += m[i].dx;
         p[i].y += m[i].dy;
-    }
-    gs->turn_flag = 0;
-}
-
-void remove_movement_system(ecs_iter_t *it) {
-    Movement *m = ecs_term(it, Movement, 1);
-    for (int i = 0; i < it->count; i++) {
-        ecs_remove(it->world, it->entities[i], Movement);
+        m[i].dx = 0;
+        m[i].dy = 0;
+        ecs_add_id(gs->ecs, it->entities[i], ECS_SWITCH | NoQueuedMovement);
+        if (it->entities[i] == gs->player) {
+            gs->turn_flag = 0;
+        }
     }
 }
 
