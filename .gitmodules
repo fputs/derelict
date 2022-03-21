@@ -7,6 +7,7 @@
 [submodule "lib/flecs"]
 	path = lib/flecs
 	url = https://github.com/SanderMertens/flecs
+	ignore = dirty
 [submodule "lib/uthash"]
 	path = lib/uthash
 	url = https://github.com/troydhanson/uthash
