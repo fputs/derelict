@@ -16,7 +16,7 @@
 #define MESSAGE_LOG_Y_START gs->window_height - (MESSAGE_LOG_HEIGHT) + 1
 
 extern ECS_COMPONENT_DECLARE(Position);
-extern ECS_COMPONENT_DECLARE(Movement);
+extern ECS_COMPONENT_DECLARE(Moveable);
 extern ECS_COMPONENT_DECLARE(Drawable);
 extern ECS_COMPONENT_DECLARE(Actor);
 extern ECS_DECLARE(QueuedMovement);
@@ -33,23 +33,26 @@ void gamescreen_handle_input(struct GameState *gs) {
 
     case TK_H:
     case TK_LEFT:
-        ecs_set(gs->ecs, gs->player, Movement, {-1, 0});
+        ecs_set(gs->ecs, gs->player, Moveable, {-1, 0});
         ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_L:
     case TK_RIGHT:
-        ecs_set(gs->ecs, gs->player, Movement, {1, 0});
+        ecs_set(gs->ecs, gs->player, Moveable, {1, 0});
+        ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_K:
     case TK_UP:
-        ecs_set(gs->ecs, gs->player, Movement, {0, -1});
+        ecs_set(gs->ecs, gs->player, Moveable, {0, -1});
+        ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_J:
     case TK_DOWN:
-        ecs_set(gs->ecs, gs->player, Movement, {0, 1});
+        ecs_set(gs->ecs, gs->player, Moveable, {0, 1});
+        ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
     }
 }
@@ -66,8 +69,12 @@ void gamescreen_render(struct GameState *gs) {
         for (int y = 1; y < map_sz_y - 1; y++) {
             enum Tile *t = tile(gs->current_map, x - 1, y - 1);
             if (IS_WALKABLE(t)) {
+                terminal_bkcolor(get_color(gs->colors, "FloorBackgroundFov"));
+                terminal_color(get_color(gs->colors, "FloorFov"));
                 terminal_print(x, y, ".");
             } else {
+                terminal_bkcolor(get_color(gs->colors, "WallBackgroundFov"));
+                terminal_color(get_color(gs->colors, "WallFov"));
                 terminal_print(x, y, "#");
             }
         }
@@ -89,6 +96,7 @@ void gamescreen_render(struct GameState *gs) {
         Drawable *d = ecs_term(&it, Drawable, 3);
         for (int i = 0; i < it.count; i ++) {
             // TODO: Fix this +1 garbage
+            terminal_color(get_color(gs->colors, "Player"));
             terminal_printf(p[i].x + 1, p[i].y + 1, "%c", d[i].symbol);
         }
     }

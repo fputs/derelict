@@ -1,0 +1,29 @@
+FloorBackground 255 255 255 255
+Floor 255 71 62 45
+FloorBackgroundFov 255 20 12 28
+FloorFov 255 129 121 107
+
+WallBackground 255 31 38 47
+Wall 255 72 77 85
+WallBackgroundFov 255 51 56 64
+WallFov 255 93 97 105
+
+Text 255 222 238 214
+Player 255 222 238 214
+
+Dark 255 20 12 28
+OldBlood 255 68 36 52
+DeepWater 255 48 52 109
+OldStone 255 78 74 78
+Wood 255 133 76 48
+Vegetation 255 52 101 36
+Blood 255 208 70 72
+Stone 255 117 113 97
+Water 255 89 125 206
+BrightWood 255 210 125 44
+Metal 255 133 149 161
+Grass 255 109 170 44
+Skin 255 210 170 153
+Sky 255 109 194 202
+Sun 255 218 212 94
+Light 255 222 238 214

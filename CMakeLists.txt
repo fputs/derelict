@@ -42,4 +42,5 @@ target_link_libraries(derelict PRIVATE
     BearLibTerminal
     flint
     flecs
+    bsd
 )

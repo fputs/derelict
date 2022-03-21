@@ -14,7 +14,7 @@ int main() {
     terminal_setf("font: resources/ProggySquare.ttf, size=%dx%d;", INIT_FONT_SZ, INIT_FONT_SZ);
     terminal_set("0xE000: resources/Cheepicus_12x12.png, size=12x12");
 
-    struct GameState *gs = new_GameState(INIT_TERM_WIDTH, INIT_TERM_HEIGHT);
+    struct GameState *gs = new_GameState(INIT_TERM_WIDTH, INIT_TERM_HEIGHT, "resources/colors");
     init_screen_manager();
     push_screen(new_main_menu_screen());
 

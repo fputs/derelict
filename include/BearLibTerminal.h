@@ -150,7 +150,7 @@
 #define TK_MOUSE_MIDDLE     0x82
 #define TK_MOUSE_X1         0x83
 #define TK_MOUSE_X2         0x84
-#define TK_MOUSE_MOVE       0x85 /* Movement event */
+#define TK_MOUSE_MOVE       0x85 /* Moveable event */
 #define TK_MOUSE_SCROLL     0x86 /* Mouse scroll event */
 #define TK_MOUSE_X          0x87 /* Cusor position in cells */
 #define TK_MOUSE_Y          0x88

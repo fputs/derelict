@@ -10,14 +10,14 @@ void move_system(ecs_iter_t *it) {
         return;
     }
     Position *p = ecs_term(it, Position, 1);
-    Movement *m = ecs_term(it, Movement, 2);
+    Moveable *m = ecs_term(it, Moveable, 2);
 
     for (int i = 0; i < it->count; i++) {
         p[i].x += m[i].dx;
         p[i].y += m[i].dy;
         m[i].dx = 0;
         m[i].dy = 0;
-        ecs_add_id(gs->ecs, it->entities[i], ECS_SWITCH | NoQueuedMovement);
+        ecs_add_id(it->world, it->entities[i], ECS_CASE | NoQueuedMovement);
         if (it->entities[i] == gs->player) {
             gs->turn_flag = 0;
         }
@@ -26,7 +26,7 @@ void move_system(ecs_iter_t *it) {
 
 void verify_player_movement_system(ecs_iter_t *it) {
     Position *p = ecs_term(it, Position, 1);
-    Movement *m = ecs_term(it, Movement, 2);
+    Moveable *m = ecs_term(it, Moveable, 2);
     struct GameState *gs = (struct GameState*)it->ctx;
 
     for (int i = 0; i < it->count; i++) {

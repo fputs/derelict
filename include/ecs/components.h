@@ -10,7 +10,7 @@ typedef struct {
 
 typedef struct {
     int dx, dy;
-} Movement;
+} Moveable;
 
 typedef struct {
     char symbol;

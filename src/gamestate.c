@@ -6,15 +6,16 @@
 
 // ECS Declarations
 ECS_COMPONENT_DECLARE(Position);
-ECS_COMPONENT_DECLARE(Movement);
+ECS_COMPONENT_DECLARE(Moveable);
 ECS_COMPONENT_DECLARE(Drawable);
 ECS_COMPONENT_DECLARE(Actor);
 ECS_COMPONENT_DECLARE(Hero);
 ECS_DECLARE(QueuedMovement);
 ECS_DECLARE(NoQueuedMovement);
 
-struct GameState *new_GameState(int w, int h) {
+struct GameState *new_GameState(int w, int h, char *color_path) {
     struct GameState *gs = malloc(sizeof(struct GameState));
+    gs->colors = load_colors(color_path);
 
     gs->window_width = w;
     gs->window_height = h;
@@ -34,7 +35,7 @@ struct GameState *new_GameState(int w, int h) {
     ECS_COMPONENT_DEFINE(gs->ecs, Position)
     ECS_COMPONENT_DEFINE(gs->ecs, Drawable)
     ECS_COMPONENT_DEFINE(gs->ecs, Actor)
-    ECS_COMPONENT_DEFINE(gs->ecs, Movement)
+    ECS_COMPONENT_DEFINE(gs->ecs, Moveable)
     ECS_COMPONENT_DEFINE(gs->ecs, Hero)
 
     // Tag definitions
@@ -46,17 +47,17 @@ struct GameState *new_GameState(int w, int h) {
     ecs_system_init(gs->ecs, &(ecs_system_desc_t) {
             .query.filter.terms = {
                     {ecs_id(Position)},
-                    {ecs_id(Movement)},
+                    {ecs_id(Moveable)},
             },
             .entity.add = PreUpdate,
             .callback = verify_player_movement_system,
             .ctx = gs,
     });
-    //ECS_SYSTEM(gs->ecs, monster_ai_system, PreUpdate, Position, Movement)
     ecs_system_init(gs->ecs, &(ecs_system_desc_t) {
             .query.filter.terms = {
                     {ecs_id(Position)},
-                    {ecs_id(Movement)},
+                    {ecs_id(Moveable)},
+                    {ecs_case(MovementState, QueuedMovement)}
             },
             .entity.add = Update,
             .callback = move_system,
@@ -86,5 +87,6 @@ struct GameState *new_GameState(int w, int h) {
 
 void destroy_GameState(struct GameState* gs) {
     destroy_Map(gs->current_map);
+    clear_colors(gs->colors);
     free(gs);
 }
