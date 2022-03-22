@@ -4089,7 +4089,7 @@ Move	lib/flecs/test/custom_builds/c/pipeline/src/main.c	/^void Move(ecs_iter_t *
 Move	lib/flecs/test/custom_builds/c/pipeline_w_system/src/main.c	/^void Move(ecs_iter_t *it) {$/;"	f	typeref:typename:void
 Move	lib/flecs/test/custom_builds/c/system/src/main.c	/^void Move(ecs_iter_t *it) {$/;"	f	typeref:typename:void
 Move	lib/flecs/test/custom_builds/c/timer/src/main.c	/^void Move(ecs_iter_t *it) {$/;"	f	typeref:typename:void
-Movement	include/ecs/components.h	/^} Movement;$/;"	t	typeref:struct:__anon1ffac85e0208
+Moveable	include/ecs/components.h	/^} Moveable;$/;"	t	typeref:struct:__anon1ffac85e0208
 Movement	lib/flecs/test/cpp_api/src/QueryBuilder.cpp	/^    struct Movement { };$/;"	s	function:QueryBuilder_role	file:
 Movement	lib/flecs/test/cpp_api/src/Switch.cpp	/^struct Movement {$/;"	s	file:
 MtTask	lib/flecs/test/api/src/MultiThread.c	/^void MtTask(ecs_iter_t *it) {$/;"	f	typeref:typename:void	file:
@@ -9868,7 +9868,7 @@ add_case	lib/flecs/flecs.h	/^    Self& add_case() {$/;"	f	struct:flecs::entity_b
 add_case	lib/flecs/flecs.h	/^    Self& add_case(entity_t sw_case) {$/;"	f	struct:flecs::entity_builder	typeref:typename:Self &
 add_case	lib/flecs/include/flecs/addons/cpp/mixins/entity/builder.hpp	/^    Self& add_case() {$/;"	f	struct:flecs::entity_builder	typeref:typename:Self &
 add_case	lib/flecs/include/flecs/addons/cpp/mixins/entity/builder.hpp	/^    Self& add_case(entity_t sw_case) {$/;"	f	struct:flecs::entity_builder	typeref:typename:Self &
-add_color	src/colors.c	/^void add_color(struct DColor *colors, char *name, int a, int r, int g, int b) {$/;"	f	typeref:typename:void
+add_color	src/colors.c	/^void add_color(struct DColor **colors, char *name, int a, int r, int g, int b) {$/;"	f	typeref:typename:void
 add_constant	lib/flecs/flecs.c	/^void add_constant(ecs_iter_t *it) {$/;"	f	typeref:typename:void	file:
 add_constant	lib/flecs/src/addons/meta/meta.c	/^void add_constant(ecs_iter_t *it) {$/;"	f	typeref:typename:void	file:
 add_constant_to_bitmask	lib/flecs/flecs.c	/^int add_constant_to_bitmask($/;"	f	typeref:typename:int	file:
@@ -10468,6 +10468,7 @@ color_from_name	include/BearLibTerminal.h	/^TERMINAL_INLINE color_t color_from_n
 color_from_name	include/BearLibTerminal.h	/^TERMINAL_INLINE color_t color_from_name(const wchar_t* name)$/;"	f	typeref:typename:TERMINAL_INLINE color_t
 color_from_wname	include/BearLibTerminal.h	/^TERMINAL_INLINE color_t color_from_wname(const wchar_t* name)$/;"	f	typeref:typename:TERMINAL_INLINE color_t
 color_t	include/BearLibTerminal.h	/^typedef uint32_t color_t;$/;"	t	typeref:typename:uint32_t
+colors	include/gamestate.h	/^    struct DColor *colors;$/;"	m	struct:GameState	typeref:struct:DColor *
 column	lib/flecs/flecs.c	/^    int32_t column;$/;"	m	struct:__anona642c0050d08	typeref:typename:int32_t	file:
 column	lib/flecs/flecs.c	/^    int32_t column;$/;"	m	struct:ecs_column_info_t	typeref:typename:int32_t	file:
 column	lib/flecs/flecs.c	/^    int32_t column;$/;"	m	struct:ecs_rule_subset_frame_t	typeref:typename:int32_t	file:
@@ -11006,6 +11007,7 @@ defs3	lib/uthash/doc/uthash-mini.svg	/^     id="defs3">$/;"	i
 del_lines	lib/libflint/src/lfinput.c	/^void del_lines(char **lines) {$/;"	f	typeref:typename:void
 del_split	lib/libflint/src/lfinput.c	/^void del_split(char **sp) {$/;"	f	typeref:typename:void
 delete_all	lib/uthash/tests/example.c	/^void delete_all()$/;"	f	typeref:typename:void
+delete_colors	src/colors.c	/^void delete_colors(struct DColor *colors) {$/;"	f	typeref:typename:void
 delete_count	lib/flecs/flecs.c	/^    int32_t delete_count;$/;"	m	struct:ecs_world_t	typeref:typename:int32_t	file:
 delete_count	lib/flecs/flecs.h	/^    ecs_counter_t delete_count;$/;"	m	struct:ecs_world_stats_t	typeref:typename:ecs_counter_t
 delete_count	lib/flecs/include/flecs/addons/stats.h	/^    ecs_counter_t delete_count;$/;"	m	struct:ecs_world_stats_t	typeref:typename:ecs_counter_t
@@ -15072,7 +15074,7 @@ get_char	lib/flecs/flecs.h	/^    char get_char() const {$/;"	f	struct:flecs::met
 get_char	lib/flecs/include/flecs/addons/cpp/mixins/meta/decl.hpp	/^    char get_char() const {$/;"	f	struct:flecs::meta::cursor	typeref:typename:char
 get_chunk	lib/flecs/flecs.c	/^chunk_t* get_chunk($/;"	f	typeref:typename:chunk_t *	file:
 get_chunk	lib/flecs/src/datastructures/sparse.c	/^chunk_t* get_chunk($/;"	f	typeref:typename:chunk_t *	file:
-get_color	src/colors.c	/^color_t *get_color(struct DColor *colors, char *name) {$/;"	f	typeref:typename:color_t *
+get_color	src/colors.c	/^color_t get_color(struct DColor *colors, char *name) {$/;"	f	typeref:typename:color_t
 get_comp_and_src	lib/flecs/flecs.c	/^int get_comp_and_src($/;"	f	typeref:typename:int	file:
 get_comp_and_src	lib/flecs/src/query.c	/^int get_comp_and_src($/;"	f	typeref:typename:int	file:
 get_component	lib/flecs/flecs.c	/^void* get_component($/;"	f	typeref:typename:void *	file:
@@ -16441,7 +16443,7 @@ lo	lib/flecs/flecs.c	/^    ecs_graph_edge_t *lo; \/* Small array optimized for l
 lo	lib/flecs/src/private_types.h	/^    ecs_graph_edge_t *lo; \/* Small array optimized for low edges *\/$/;"	m	struct:ecs_graph_edges_t	typeref:typename:ecs_graph_edge_t *
 lo_var	lib/flecs/flecs.c	/^    int32_t lo_var; \/* If lo part should be stored in var, this is the var id *\/$/;"	m	struct:ecs_rule_filter_t	typeref:typename:int32_t	file:
 lo_var	lib/flecs/src/addons/rules.c	/^    int32_t lo_var; \/* If lo part should be stored in var, this is the var id *\/$/;"	m	struct:ecs_rule_filter_t	typeref:typename:int32_t	file:
-load_colors	src/colors.c	/^color_t* load_colors(char *path) {$/;"	f	typeref:typename:color_t *
+load_colors	src/colors.c	/^struct DColor *load_colors(char *path) {$/;"	f	typeref:struct:DColor *
 lock	lib/flecs/flecs.c	/^    ecs_os_mutex_t lock;$/;"	m	struct:ecs_http_server_t	typeref:typename:ecs_os_mutex_t	file:
 lock	lib/flecs/flecs.c	/^    int32_t lock;$/;"	m	struct:ecs_table_t	typeref:typename:int32_t	file:
 lock	lib/flecs/flecs.h	/^    void lock() {$/;"	f	struct:flecs::world	typeref:typename:void
@@ -17472,7 +17474,7 @@ netq_t	lib/uthash/tests/test89.c	/^typedef struct netq_t {$/;"	s	file:
 netq_t	lib/uthash/tests/test89.c	/^} netq_t;$/;"	t	typeref:struct:netq_t	file:
 new	lib/flecs/flecs.c	/^void new($/;"	f	typeref:typename:void	file:
 new	lib/flecs/src/entity.c	/^void new($/;"	f	typeref:typename:void	file:
-new_GameState	src/gamestate.c	/^struct GameState *new_GameState(int w, int h) {$/;"	f	typeref:struct:GameState *
+new_GameState	src/gamestate.c	/^struct GameState *new_GameState(int w, int h, char *color_path) {$/;"	f	typeref:struct:GameState *
 new_count	lib/flecs/flecs.c	/^    int32_t new_count;$/;"	m	struct:ecs_world_t	typeref:typename:int32_t	file:
 new_count	lib/flecs/flecs.h	/^    ecs_counter_t new_count;$/;"	m	struct:ecs_world_stats_t	typeref:typename:ecs_counter_t
 new_count	lib/flecs/include/flecs/addons/stats.h	/^    ecs_counter_t new_count;$/;"	m	struct:ecs_world_stats_t	typeref:typename:ecs_counter_t

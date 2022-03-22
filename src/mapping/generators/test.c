@@ -16,6 +16,6 @@ void generate_test(struct Map *map) {
         REM_WALKABLE(tile(map, map->width - 1, y));
     }
 
-    map->player_start_x = 1;
+    map->player_start_x = 161;
     map->player_start_y = 1;
 }
