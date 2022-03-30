@@ -36,7 +36,6 @@ void generate_test(struct Map *map) {
 
             if (valid) {
                 ll_ins_next(rooms, rooms->tail, r);
-                // TODO: Dig hallways
             } else {
                 free(r);
             }
@@ -49,6 +48,9 @@ void generate_test(struct Map *map) {
             for (int y = r->y0 + 1; y < r->y1; y++) {
                 SET_WALKABLE(tile(map, x, y));
             }
+        }
+        if (node->next != NULL) {
+            dig_hallway(map, node->data, node->next->data);
         }
     }
     del_room_list(rooms);

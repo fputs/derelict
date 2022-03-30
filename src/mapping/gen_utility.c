@@ -2,6 +2,7 @@
 #include <sodium.h>
 
 #include "mapping/gen_utility.h"
+#include "lfmath.h"
 
 struct Room new_room(int x0, int y0, int w, int h) {
     struct Room r = {x0, y0, x0 + w, y0 + h, w, h};
@@ -44,4 +45,33 @@ int room_overlap(struct Room *r1, struct Room *r2) {
 
 int rand_int(int low, int high) {
     return (int) randombytes_uniform(high - low + 1) + low;
+}
+
+void dig_horizontal_line(struct Map *map, int x0, int x1, int y) {
+    int xmin = min_int(x0, x1);
+    int xmax = max_int(x0, x1);
+    for (int x = xmin; x <= xmax; x++) {
+        SET_WALKABLE(tile(map, x, y));
+    }
+}
+
+void dig_vertical_line(struct Map *map, int y0, int y1, int x) {
+    int ymin = min_int(y0, y1);
+    int ymax = max_int(y0, y1);
+    for (int y = ymin; y <= ymax; y++) {
+        SET_WALKABLE(tile(map, x, y));
+    }
+}
+
+void dig_hallway(struct Map *map, struct Room *r1, struct Room *r2) {
+    int cx1 = 0, cy1 = 0, cx2 = 0, cy2 = 0;
+    room_center(r1, &cx1, &cy1);
+    room_center(r2, &cx2, &cy2);
+    if (rand_int(0, 100) % 2 == 0) {
+        dig_horizontal_line(map, cx1, cx2, cy1);
+        dig_vertical_line(map, cy1, cy2, cx2);
+    } else {
+        dig_vertical_line(map, cy1, cy2, cx1);
+        dig_horizontal_line(map, cx1, cx2, cy2);
+    }
 }
