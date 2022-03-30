@@ -17,6 +17,7 @@ set(SRC
     src/ecs/systems.c
 
     src/mapping/map.c
+    src/mapping/gen_utility.c
     src/mapping/generators/test.c
 
     src/screens/manager.c
@@ -43,4 +44,5 @@ target_link_libraries(derelict PRIVATE
     flint
     flecs
     bsd
+    sodium
 )

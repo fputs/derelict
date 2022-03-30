@@ -63,9 +63,12 @@ void gamescreen_render(struct GameState *gs) {
     terminal_color(get_color(gs->colors, "Text"));
 
     // Map
-    terminal_layer(LAYER_MAP);
     int map_sz_x = gs->window_width - STAT_PANEL_WIDTH - 1;
     int map_sz_y = gs->window_height - MESSAGE_LOG_HEIGHT - 1;
+    terminal_layer(LAYER_UI);
+    draw_ui_box(0, 0, map_sz_x, map_sz_y);
+
+    terminal_layer(LAYER_MAP);
     const Position *pp = ecs_get(gs->ecs, gs->player, Position);
     int csx, csy;
     if (pp->x < map_sz_x / 2) {
@@ -83,7 +86,6 @@ void gamescreen_render(struct GameState *gs) {
         csy = pp->y - map_sz_y / 2;
     }
 
-    draw_ui_box(0, 0, map_sz_x, map_sz_y);
     for (int x = 1, cx = csx; x < map_sz_x; x++, cx++) {
         for (int y = 1, cy = csy; y < map_sz_y; y++, cy++) {
             enum Tile *t = tile(gs->current_map, cx, cy);
@@ -122,6 +124,7 @@ void gamescreen_render(struct GameState *gs) {
         }
     }
 
+    terminal_layer(LAYER_UI);
     // Stat Panel
     terminal_color(get_color(gs->colors, "Text"));
     draw_ui_box(gs->window_width - STAT_PANEL_WIDTH, 0, STAT_PANEL_WIDTH - 1, gs->window_height - 1);

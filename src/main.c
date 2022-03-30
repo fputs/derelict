@@ -1,3 +1,7 @@
+#include <sodium.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "BearLibTerminal.h"
 #include "gamestate.h"
 #include "screens/manager.h"
@@ -9,6 +13,10 @@
 
 int main() {
     // INIT GAME
+    if (sodium_init() == -1) {
+        printf("Failed to init libsodium");
+        exit(EXIT_FAILURE);
+    }
     terminal_open();
     terminal_setf("window: title='foo', size=%dx%d;", INIT_TERM_WIDTH, INIT_TERM_HEIGHT);
     terminal_setf("font: resources/ProggySquare.ttf, size=%dx%d;", INIT_FONT_SZ, INIT_FONT_SZ);
