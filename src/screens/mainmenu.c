@@ -7,14 +7,14 @@
 
 void main_menu_input(struct GameState *gs) {
     switch (terminal_read()) {
-        case TK_ESCAPE:
-        case TK_CLOSE:
-            gs->quit_flag = 1;
-            break;
+    case TK_ESCAPE:
+    case TK_CLOSE:
+        gs->quit_flag = 1;
+        break;
 
-        case TK_ENTER:
-            push_screen(new_gamescreen());
-            break;
+    case TK_ENTER:
+        push_screen(new_gamescreen());
+        break;
     }
 }
 

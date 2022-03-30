@@ -13,8 +13,8 @@ struct Map *init_Map(int w, int h, enum MapType type) {
     memset(m->tiles, TILE_NONE, sizeof(enum Tile) * m->width * m->height);
 
     switch (type) {
-        case MAPTYPE_TEST:
-            generate_test(m);
+    case MAPTYPE_TEST:
+        generate_test(m);
     }
 
     return m;

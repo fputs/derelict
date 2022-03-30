@@ -19,7 +19,7 @@ void pop_screen() {
 }
 
 struct Screen *peek_screen() {
-    return (struct Screen*)stack_peek(screen_manager);
+    return (struct Screen *) stack_peek(screen_manager);
 }
 
 void destroy_screen_manager() {

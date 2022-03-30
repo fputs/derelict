@@ -8,7 +8,6 @@
 #include "BearLibTerminal.h"
 #include "layers.h"
 #include "colors.h"
-#include "lfmath.h"
 
 #define STAT_PANEL_WIDTH 20
 #define STAT_PANEL_X_START gs->window_width - (STAT_PANEL_WIDTH) + 1
@@ -24,35 +23,35 @@ extern ECS_DECLARE(QueuedMovement);
 
 void gamescreen_handle_input(struct GameState *gs) {
     switch (terminal_read()) {
-        case TK_CLOSE:
-            gs->quit_flag = 1;
-            break;
+    case TK_CLOSE:
+        gs->quit_flag = 1;
+        break;
 
-        case TK_ESCAPE:
-            pop_screen();
-            break;
+    case TK_ESCAPE:
+        pop_screen();
+        break;
 
     case TK_H:
     case TK_LEFT:
-        ecs_set(gs->ecs, gs->player, Moveable, {-1, 0});
+        ecs_set(gs->ecs, gs->player, Moveable, { -1, 0 });
         ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_L:
     case TK_RIGHT:
-        ecs_set(gs->ecs, gs->player, Moveable, {1, 0});
+        ecs_set(gs->ecs, gs->player, Moveable, { 1, 0 });
         ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_K:
     case TK_UP:
-        ecs_set(gs->ecs, gs->player, Moveable, {0, -1});
+        ecs_set(gs->ecs, gs->player, Moveable, { 0, -1 });
         ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
 
     case TK_J:
     case TK_DOWN:
-        ecs_set(gs->ecs, gs->player, Moveable, {0, 1});
+        ecs_set(gs->ecs, gs->player, Moveable, { 0, 1 });
         ecs_add_id(gs->ecs, gs->player, ECS_CASE | QueuedMovement);
         break;
     }
@@ -106,16 +105,16 @@ void gamescreen_render(struct GameState *gs) {
     static ecs_filter_t f;
     ecs_filter_init(gs->ecs, &f, &(ecs_filter_desc_t) {
             .terms = {
-                    { ecs_id(Position) },
-                    { ecs_id(Actor) },
-                    { ecs_id(Drawable) },
+                    {ecs_id(Position)},
+                    {ecs_id(Actor)},
+                    {ecs_id(Drawable)},
             }
     });
     ecs_iter_t it = ecs_filter_iter(gs->ecs, &f);
     while (ecs_filter_next(&it)) {
         Position *p = ecs_term(&it, Position, 1);
         Drawable *d = ecs_term(&it, Drawable, 3);
-        for (int i = 0; i < it.count; i ++) {
+        for (int i = 0; i < it.count; i++) {
             if (p[i].x >= csx && p[i].x <= csx + map_sz_x &&
                 p[i].y >= csy && p[i].y <= csy + map_sz_y) {
                 terminal_color(d[i].fg);
@@ -133,7 +132,8 @@ void gamescreen_render(struct GameState *gs) {
 
     // Message Log
     terminal_color(get_color(gs->colors, "Text"));
-    draw_ui_box(0, gs->window_height - MESSAGE_LOG_HEIGHT, gs->window_width - STAT_PANEL_WIDTH - 1, MESSAGE_LOG_HEIGHT - 1);
+    draw_ui_box(0, gs->window_height - MESSAGE_LOG_HEIGHT, gs->window_width - STAT_PANEL_WIDTH - 1,
+                MESSAGE_LOG_HEIGHT - 1);
     terminal_color(get_color(gs->colors, "Text"));
     terminal_printf(1, MESSAGE_LOG_Y_START, "Player at %d,%d", pp->x, pp->y);
 

@@ -3,7 +3,7 @@
 
 #include "gamestate.h"
 
-typedef void (*screen_func)(struct GameState* gs);
+typedef void (*screen_func)(struct GameState *gs);
 
 struct Screen {
     screen_func update;

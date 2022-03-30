@@ -5,7 +5,7 @@
 extern ECS_DECLARE(NoQueuedMovement);
 
 void move_system(ecs_iter_t *it) {
-    struct GameState *gs = (struct GameState*)it->ctx;
+    struct GameState *gs = (struct GameState *) it->ctx;
     if (!gs->turn_flag) {
         return;
     }
@@ -27,7 +27,7 @@ void move_system(ecs_iter_t *it) {
 void verify_player_movement_system(ecs_iter_t *it) {
     Position *p = ecs_term(it, Position, 1);
     Moveable *m = ecs_term(it, Moveable, 2);
-    struct GameState *gs = (struct GameState*)it->ctx;
+    struct GameState *gs = (struct GameState *) it->ctx;
 
     for (int i = 0; i < it->count; i++) {
         int px = p[i].x + m[i].dx;

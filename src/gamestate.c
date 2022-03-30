@@ -67,15 +67,15 @@ struct GameState *new_GameState(int w, int h, char *color_path) {
     /* START TEMP */
     // Temp player settings
     gs->player = ecs_new_id(gs->ecs);
-    ecs_set(gs->ecs, gs->player, Actor, {10, 5});
-    ecs_set(gs->ecs, gs->player, Drawable, {'@', 0, color_from_name("yellow")});
-    ecs_set(gs->ecs, gs->player, Hero, {1});
+    ecs_set(gs->ecs, gs->player, Actor, { 10, 5 });
+    ecs_set(gs->ecs, gs->player, Drawable, { '@', 0, color_from_name("yellow") });
+    ecs_set(gs->ecs, gs->player, Hero, { 1 });
     ecs_add_id(gs->ecs, gs->player, ECS_SWITCH | MovementState);
     ecs_add_id(gs->ecs, gs->player, ECS_CASE | NoQueuedMovement);
 
     // Temp map
     gs->current_map = init_Map(w * 2, h * 2, MAPTYPE_TEST);
-    ecs_set(gs->ecs, gs->player, Position, {gs->current_map->player_start_x, gs->current_map->player_start_y});
+    ecs_set(gs->ecs, gs->player, Position, { gs->current_map->player_start_x, gs->current_map->player_start_y });
     /* END TEMP */
 
     // Flags
@@ -85,7 +85,7 @@ struct GameState *new_GameState(int w, int h, char *color_path) {
     return gs;
 }
 
-void destroy_GameState(struct GameState* gs) {
+void destroy_GameState(struct GameState *gs) {
     destroy_Map(gs->current_map);
     clear_colors(gs->colors);
     free(gs);

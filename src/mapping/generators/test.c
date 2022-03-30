@@ -27,7 +27,7 @@ void generate_test(struct Map *map) {
         } else {
             int valid = 1;
             LL_ITER(rooms) {
-                struct Room *t = (struct Room*)node->data;
+                struct Room *t = (struct Room *) node->data;
                 if (room_overlap(r, t)) {
                     valid = 0;
                     break;
@@ -43,7 +43,7 @@ void generate_test(struct Map *map) {
     }
 
     LL_ITER(rooms) {
-        struct Room *r = (struct Room*)node->data;
+        struct Room *r = (struct Room *) node->data;
         for (int x = r->x0 + 1; x < r->x1; x++) {
             for (int y = r->y0 + 1; y < r->y1; y++) {
                 SET_WALKABLE(tile(map, x, y));

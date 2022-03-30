@@ -20,6 +20,7 @@ struct GameState {
 };
 
 struct GameState *new_GameState(int w, int h, char *color_path);
-void destroy_GameState(struct GameState* gs);
+
+void destroy_GameState(struct GameState *gs);
 
 #endif

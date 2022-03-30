@@ -10,8 +10,10 @@ struct DColor {
     UT_hash_handle hh;
 };
 
-struct DColor* load_colors(char *);
+struct DColor *load_colors(char *);
+
 void clear_colors(struct DColor *);
+
 color_t get_color(struct DColor *, char *);
 
 #endif // COLORS_H

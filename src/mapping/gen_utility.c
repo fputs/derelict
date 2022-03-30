@@ -26,12 +26,12 @@ List *new_room_list() {
     return list;
 }
 
-void del_room_list(List* list) {
+void del_room_list(List *list) {
     ll_destroy(list);
     free(list);
 }
 
-void room_center(struct Room *room, int* x, int *y) {
+void room_center(struct Room *room, int *x, int *y) {
     *x = (room->x0 + room->x1) / 2;
     *y = (room->y0 + room->y1) / 2;
 }
